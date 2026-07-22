@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anamnese pré-consulta — Dr. Alberto D'Auria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#2D504C;
+  --green-deep:#1E3835;
+  --green-mid:#3E6763;
+  --gold:#C9A368;
+  --gold-light:#E0C28F;
+  --cream:#F4EFE6;
+  --cream-warm:#FBF8F2;
+  --ink:#23302E;
+  --muted:#6B7B78;
+  --line:#DCD3C4;
+  --err:#A44A3F;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'EB Garamond',Georgia,serif;
+  background:var(--cream);
+  color:var(--ink);
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- Cabeçalho ---------- */
+.masthead{
+  background:var(--green);
+  color:var(--cream);
+  padding:26px 20px 22px;
+  text-align:center;
+  position:relative;
+}
+.masthead::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.logo-slot{margin:0 auto 16px;max-width:190px}
+.logo-slot img{width:100%;height:auto;display:block}
+.masthead h1{
+  font-family:'Montserrat',sans-serif;
+  font-weight:600;font-size:15px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--cream);
+}
+.masthead .sub{
+  font-family:'Montserrat',sans-serif;
+  font-weight:400;font-size:10.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold);margin-top:7px;
+}
+
+/* ---------- Progresso ---------- */
+.progress-wrap{
+  position:sticky;top:0;z-index:50;
+  background:var(--cream-warm);
+  border-bottom:1px solid var(--line);
+  padding:11px 20px 12px;
+}
+.progress-meta{
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-family:'Montserrat',sans-serif;font-size:10px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:8px;
+}
+.progress-meta .step-name{color:var(--green);font-weight:600}
+.bar{height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+.bar span{
+  display:block;height:100%;width:0;
+  background:linear-gradient(90deg,var(--gold),var(--gold-light));
+  transition:width .45s cubic-bezier(.4,0,.2,1);
+}
+
+/* ---------- Layout ---------- */
+main{max-width:680px;margin:0 auto;padding:0 20px 40px}
+.intro{
+  background:var(--cream-warm);
+  border:1px solid var(--line);
+  border-left:3px solid var(--gold);
+  padding:22px 24px;margin:28px 0 8px;
+}
+.intro p{margin-bottom:11px;font-size:17px}
+.intro p:last-child{margin-bottom:0}
+.intro strong{color:var(--green);font-weight:600}
+
+section.step{display:none;padding:30px 0 8px;animation:fade .4s ease}
+section.step.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.step-head{margin-bottom:26px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.step-num{
+  font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gold);
+  display:block;margin-bottom:8px;
+}
+.step-head h2{
+  font-family:'EB Garamond',serif;font-weight:500;
+  font-size:29px;line-height:1.25;color:var(--green);letter-spacing:-.01em;
+}
+.step-head .note{
+  font-size:15.5px;color:var(--muted);margin-top:9px;font-style:italic;
+}
+
+/* ---------- Campos ---------- */
+.field{margin-bottom:26px}
+.field > label.q,
+.field > .q{
+  display:block;
+  font-family:'Montserrat',sans-serif;
+  font-size:13px;font-weight:600;line-height:1.45;
+  color:var(--green);margin-bottom:4px;letter-spacing:.005em;
+}
+.req{color:var(--gold);margin-left:2px}
+.hint{
+  display:block;font-size:14.5px;color:var(--muted);
+  margin-bottom:10px;font-style:italic;
+}
+.field .hint + .opts,
+.field .q + .opts{margin-top:10px}
+
+input[type=text],input[type=tel],input[type=email],input[type=number],textarea,select{
+  width:100%;
+  font-family:'EB Garamond',serif;font-size:17px;color:var(--ink);
+  background:var(--cream-warm);
+  border:1px solid var(--line);
+  border-radius:2px;
+  padding:11px 13px;
+  transition:border-color .18s,box-shadow .18s,background .18s;
+}
+textarea{min-height:96px;resize:vertical;line-height:1.55}
+input:focus,textarea:focus,select:focus{
+  outline:none;border-color:var(--gold);
+  background:#fff;
+  box-shadow:0 0 0 3px rgba(201,163,104,.16);
+}
+input::placeholder,textarea::placeholder{color:#A9B3B1;font-style:italic}
+input.invalid,textarea.invalid{border-color:var(--err);background:#FDF6F5}
+.errmsg{
+  display:none;font-family:'Montserrat',sans-serif;font-size:11.5px;
+  color:var(--err);margin-top:6px;letter-spacing:.01em;
+}
+.errmsg.show{display:block}
+
+/* opções */
+.opts{display:flex;flex-direction:column;gap:7px}
+.opts.two{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.opt{
+  display:flex;align-items:flex-start;gap:10px;
+  background:var(--cream-warm);
+  border:1px solid var(--line);
+  border-radius:2px;
+  padding:11px 13px;
+  cursor:pointer;
+  transition:border-color .16s,background .16s;
+  font-size:16.5px;line-height:1.4;
+}
+.opt:hover{border-color:var(--gold-light);background:#fff}
+.opt input{
+  appearance:none;-webkit-appearance:none;
+  width:17px;height:17px;flex:0 0 17px;margin-top:3px;
+  border:1.5px solid #B6AE9E;background:#fff;
+  cursor:pointer;transition:all .16s;
+}
+.opt input[type=radio]{border-radius:50%}
+.opt input[type=checkbox]{border-radius:2px}
+.opt input:checked{border-color:var(--green);background:var(--green)}
+.opt input[type=radio]:checked{box-shadow:inset 0 0 0 3px var(--cream-warm)}
+.opt input[type=checkbox]:checked{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23F4EFE6' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8.5l3.2 3.2L13 5'/%3E%3C/svg%3E");
+  background-size:13px;background-position:center;background-repeat:no-repeat;
+}
+.opt:has(input:checked){border-color:var(--green);background:#fff}
+.opt input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.conditional{display:none}
+.conditional.show{display:block;animation:fade .3s ease}
+
+/* ---------- Navegação ---------- */
+.nav{
+  display:flex;gap:12px;align-items:center;
+  margin-top:34px;padding-top:22px;border-top:1px solid var(--line);
+}
+button{font-family:'Montserrat',sans-serif;cursor:pointer;border:none;border-radius:2px}
+.btn-next{
+  flex:1;background:var(--green);color:var(--cream);
+  font-size:12.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+  padding:15px 22px;transition:background .18s;
+}
+.btn-next:hover{background:var(--green-deep)}
+.btn-back{
+  background:none;color:var(--muted);
+  font-size:12.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  padding:15px 8px;transition:color .18s;
+}
+.btn-back:hover{color:var(--green)}
+button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+.saved{
+  font-family:'Montserrat',sans-serif;font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);text-align:center;
+  margin-top:18px;opacity:0;transition:opacity .3s;
+}
+.saved.show{opacity:1}
+
+/* ---------- Revisão final ---------- */
+.review{
+  background:var(--cream-warm);border:1px solid var(--line);
+  padding:22px 24px;margin-top:22px;max-height:400px;overflow-y:auto;
+}
+.review h3{
+  font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--gold);
+  margin:20px 0 9px;padding-bottom:6px;border-bottom:1px solid var(--line);
+}
+.review h3:first-child{margin-top:0}
+.review .item{margin-bottom:9px;font-size:16px;line-height:1.5}
+.review .item b{color:var(--green);font-weight:600}
+.review .empty{color:var(--muted);font-style:italic}
+
+/* ---------- Fluxo de envio ---------- */
+.send{margin-top:26px}
+.send-step{
+  display:flex;gap:14px;align-items:flex-start;
+  background:var(--cream-warm);border:1px solid var(--line);
+  border-left:3px solid var(--gold);
+  padding:18px 20px;margin-bottom:12px;
+}
+.send-num{
+  flex:0 0 26px;height:26px;border-radius:50%;
+  background:var(--green);color:var(--cream);
+  font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;
+  display:flex;align-items:center;justify-content:center;margin-top:2px;
+}
+.send-body{flex:1;min-width:0}
+.send-body b{
+  display:block;font-family:'Montserrat',sans-serif;
+  font-size:13px;font-weight:600;color:var(--green);margin-bottom:5px;
+}
+.send-body p{font-size:15.5px;color:var(--muted);margin-bottom:12px;line-height:1.45}
+.btn-act{
+  display:block;width:100%;
+  font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;
+  letter-spacing:.11em;text-transform:uppercase;
+  padding:13px 18px;margin-bottom:8px;
+  background:none;color:var(--green);
+  border:1px solid var(--green);border-radius:2px;
+  transition:background .18s,color .18s;
+}
+.btn-act:last-child{margin-bottom:0}
+.btn-act:hover{background:var(--green);color:var(--cream)}
+.btn-act.primary{background:var(--green);color:var(--cream)}
+.btn-act.primary:hover{background:var(--green-deep)}
+.btn-act.done{border-color:var(--gold);background:var(--gold);color:var(--green-deep)}
+.send-step.pending{opacity:.55}
+.send-step.pending .btn-act{pointer-events:none}
+
+/* ---------- Rodapé ---------- */
+footer{
+  background:var(--green);color:var(--cream);
+  padding:30px 20px;text-align:center;margin-top:20px;
+}
+footer .name{
+  font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+}
+footer .crm{
+  font-family:'Montserrat',sans-serif;font-size:10px;font-weight:400;
+  letter-spacing:.14em;color:var(--gold);margin-top:8px;text-transform:uppercase;
+}
+footer .addr{font-size:15px;color:rgba(244,239,230,.72);margin-top:12px}
+
+@media (max-width:560px){
+  body{font-size:16.5px}
+  .logo-slot{max-width:158px;margin-bottom:13px}
+  .masthead{padding:22px 20px 18px}
+  .step-head h2{font-size:25px}
+  .row,.opts.two{grid-template-columns:1fr}
+  main{padding:0 16px 32px}
+  .intro{padding:18px 18px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+@media print{
+  .progress-wrap,.nav,.saved{display:none}
+  section.step{display:block!important;page-break-inside:avoid}
+  body{background:#fff}
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+<header class="masthead">
+  <div class="logo-slot">
+    <img src="data:image/png;base64,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" alt="Alberto D'Auria — Ginecologia, Medicina Fetal, Obstetrícia de Alto Risco">
+  </div>
+  <h1>Anamnese pré-consulta</h1>
+</header>
+
+<div class="progress-wrap">
+  <div class="progress-meta">
+    <span id="stepName" class="step-name">Antes de começar</span>
+    <span id="stepCount">0 de 11</span>
+  </div>
+  <div class="bar"><span id="bar"></span></div>
+</div>
+
+<main>
+
+<!-- ============ ABERTURA ============ -->
+<section class="step active" data-step="0" data-name="Antes de começar">
+  <div class="intro">
+    <p>Preencha com calma antes da sua primeira consulta. Suas respostas ajudam a otimizar o atendimento e garantir um cuidado mais personalizado.</p>
+    <p><strong>Todos os dados são confidenciais</strong> e ficam salvos apenas neste aparelho até você enviá-los.</p>
+    <p>Leva cerca de 10 minutos. Se precisar parar, pode fechar a página e voltar depois — o que você já respondeu continua aqui.</p>
+    <p>Campos marcados com <span class="req">*</span> são obrigatórios.</p>
+  </div>
+  <div class="nav">
+    <button type="button" class="btn-next" data-go="1">Começar</button>
+  </div>
+</section>
+
+<!-- ============ 1. IDENTIFICAÇÃO ============ -->
+<section class="step" data-step="1" data-name="Identificação">
+  <div class="step-head">
+    <span class="step-num">Seção 1 de 11</span>
+    <h2>Identificação</h2>
+  </div>
+
+  <div class="field">
+    <label class="q" for="nome">Nome completo<span class="req">*</span></label>
+    <input type="text" id="nome" name="nome" data-req autocomplete="name" placeholder="Como consta no seu documento">
+    <div class="errmsg">Preencha seu nome completo.</div>
+  </div>
+
+  <div class="field">
+    <label class="q" for="nasc">Data de nascimento<span class="req">*</span></label>
+    <input type="text" id="nasc" name="nasc" data-req data-mask="date" inputmode="numeric" maxlength="10" placeholder="DD/MM/AAAA">
+    <div class="errmsg">Informe a data no formato DD/MM/AAAA.</div>
+  </div>
+
+  <div class="field">
+    <label class="q" for="tel">Telefone / WhatsApp</label>
+    <input type="tel" id="tel" name="tel" data-mask="phone" inputmode="numeric" maxlength="15" placeholder="(11) 99999-9999">
+  </div>
+
+  <div class="field">
+    <label class="q" for="email">E-mail</label>
+    <input type="email" id="email" name="email" autocomplete="email" placeholder="seu@email.com">
+  </div>
+
+  <div class="field">
+    <label class="q" for="cpf">CPF</label>
+    <input type="text" id="cpf" name="cpf" data-mask="cpf" inputmode="numeric" maxlength="14" placeholder="000.000.000-00">
+  </div>
+
+  <div class="field">
+    <span class="q">Motivo principal da consulta<span class="req">*</span></span>
+    <span class="hint">Selecione todos que se aplicam</span>
+    <div class="opts" data-req-group="motivo">
+      <label class="opt"><input type="checkbox" name="motivo" value="Pré-natal / acompanhamento gestacional"><span>Pré-natal / acompanhamento gestacional</span></label>
+      <label class="opt"><input type="checkbox" name="motivo" value="Check-up ginecológico de rotina"><span>Check-up ginecológico de rotina</span></label>
+      <label class="opt"><input type="checkbox" name="motivo" value="Planejamento familiar / contracepção"><span>Planejamento familiar / contracepção</span></label>
+      <label class="opt"><input type="checkbox" name="motivo" value="Irregularidade menstrual"><span>Irregularidade menstrual</span></label>
+      <label class="opt"><input type="checkbox" name="motivo" value="Dor pélvica / cólicas intensas"><span>Dor pélvica / cólicas intensas</span></label>
+      <label class="opt"><input type="checkbox" name="motivo" value="Corrimento / infecção vaginal"><span>Corrimento / infecção vaginal</span></label>
+      <label class="opt"><input type="checkbox" name="motivo" value="Menopausa / climatério"><span>Menopausa / climatério</span></label>
+      <label class="opt"><input type="checkbox" name="motivo" value="Desejo de engravidar / infertilidade"><span>Desejo de engravidar / infertilidade</span></label>
+      <label class="opt"><input type="checkbox" name="motivo" value="Outro" data-other="motivoOutro"><span>Outro</span></label>
+    </div>
+    <div class="errmsg">Selecione ao menos um motivo.</div>
+    <div class="conditional" id="motivoOutro" style="margin-top:10px">
+      <input type="text" name="motivo_outro" placeholder="Descreva o motivo">
+    </div>
+  </div>
+
+  <div class="nav">
+    <button type="button" class="btn-back" data-go="0">Voltar</button>
+    <button type="button" class="btn-next" data-go="2">Continuar</button>
+  </div>
+</section>
+
+<!-- ============ 2. HISTÓRICO MENSTRUAL ============ -->
+<section class="step" data-step="2" data-name="Histórico menstrual">
+  <div class="step-head">
+    <span class="step-num">Seção 2 de 11</span>
+    <h2>Histórico menstrual</h2>
+  </div>
+
+  <div class="field">
+    <span class="q">Ciclos menstruais</span>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="ciclos" value="Regulares"><span>Regulares</span></label>
+      <label class="opt"><input type="radio" name="ciclos" value="Irregulares"><span>Irregulares</span></label>
+      <label class="opt"><input type="radio" name="ciclos" value="Estou na menopausa"><span>Estou na menopausa</span></label>
+      <label class="opt"><input type="radio" name="ciclos" value="Não menstruo (uso de hormônios, DIU, etc.)"><span>Não menstruo (uso de hormônios, DIU, etc.)</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="q" for="dum">Data da última menstruação</label>
+    <input type="text" id="dum" name="dum" data-mask="date" inputmode="numeric" maxlength="10" placeholder="DD/MM/AAAA">
+  </div>
+
+  <div class="row">
+    <div class="field">
+      <label class="q" for="ciclo_dur">Duração do ciclo (dias)</label>
+      <input type="number" id="ciclo_dur" name="ciclo_dur" inputmode="numeric" min="1" max="90" placeholder="Ex: 28">
+    </div>
+    <div class="field">
+      <label class="q" for="mens_dur">Duração da menstruação (dias)</label>
+      <input type="number" id="mens_dur" name="mens_dur" inputmode="numeric" min="1" max="30" placeholder="Ex: 5">
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="q">Intensidade do fluxo habitual</span>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="fluxo" value="Escasso"><span>Escasso</span></label>
+      <label class="opt"><input type="radio" name="fluxo" value="Normal"><span>Normal</span></label>
+      <label class="opt"><input type="radio" name="fluxo" value="Intenso"><span>Intenso</span></label>
+      <label class="opt"><input type="radio" name="fluxo" value="Muito intenso"><span>Muito intenso (troca absorvente a cada hora)</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="q">Presença de cólicas</span>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="colicas" value="Não"><span>Não</span></label>
+      <label class="opt"><input type="radio" name="colicas" value="Leve"><span>Leve</span></label>
+      <label class="opt"><input type="radio" name="colicas" value="Moderada"><span>Moderada</span></label>
+      <label class="opt"><input type="radio" name="colicas" value="Intensa / incapacitante"><span>Intensa / incapacitante</span></label>
+    </div>
+  </div>
+
+  <div class="nav">
+    <button type="button" class="btn-back" data-go="1">Voltar</button>
+    <button type="button" class="btn-next" data-go="3">Continuar</button>
+  </div>
+</section>
+
+<!-- ============ 3. HISTÓRICO OBSTÉTRICO ============ -->
+<section class="step" data-step="3" data-name="Histórico obstétrico">
+  <div class="step-head">
+    <span class="step-num">Seção 3 de 11</span>
+    <h2>Histórico obstétrico</h2>
+  </div>
+
+  <div class="field">
+    <span class="q">Já esteve grávida?<span class="req">*</span></span>
+    <div class="opts" data-req-group="gravida">
+      <label class="opt"><input type="radio" name="gravida" value="Não, nunca" data-hide="blocoGesta"><span>Não, nunca</span></label>
+      <label class="opt"><input type="radio" name="gravida" value="Sim" data-show="blocoGesta"><span>Sim</span></label>
+      <label class="opt"><input type="radio" name="gravida" value="Estou grávida atualmente" data-show="blocoGesta"><span>Estou grávida atualmente</span></label>
+    </div>
+    <div class="errmsg">Selecione uma opção.</div>
+  </div>
+
+  <div class="conditional" id="blocoGesta">
+    <div class="row">
+      <div class="field">
+        <label class="q" for="n_gesta">Número de gestações</label>
+        <input type="number" id="n_gesta" name="n_gesta" inputmode="numeric" min="0" max="30" placeholder="0">
+      </div>
+      <div class="field">
+        <label class="q" for="n_partos">Partos normais</label>
+        <input type="number" id="n_partos" name="n_partos" inputmode="numeric" min="0" max="30" placeholder="0">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label class="q" for="n_cesareas">Cesáreas</label>
+        <input type="number" id="n_cesareas" name="n_cesareas" inputmode="numeric" min="0" max="30" placeholder="0">
+      </div>
+      <div class="field">
+        <label class="q" for="n_filhos">Filhos vivos</label>
+        <input type="number" id="n_filhos" name="n_filhos" inputmode="numeric" min="0" max="30" placeholder="0">
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="q">Abortamentos / perdas gestacionais</span>
+      <div class="opts two">
+        <label class="opt"><input type="radio" name="abortos" value="Nenhum"><span>Nenhum</span></label>
+        <label class="opt"><input type="radio" name="abortos" value="1"><span>1</span></label>
+        <label class="opt"><input type="radio" name="abortos" value="2"><span>2</span></label>
+        <label class="opt"><input type="radio" name="abortos" value="3 ou mais"><span>3 ou mais</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="q">Ocorrências em gestações anteriores</span>
+      <span class="hint">Selecione todos que se aplicam</span>
+      <div class="opts">
+        <label class="opt"><input type="checkbox" name="ocorrencias" value="Pré-eclâmpsia / eclâmpsia"><span>Pré-eclâmpsia / eclâmpsia</span></label>
+        <label class="opt"><input type="checkbox" name="ocorrencias" value="Diabetes gestacional"><span>Diabetes gestacional</span></label>
+        <label class="opt"><input type="checkbox" name="ocorrencias" value="Parto prematuro (menos de 37 semanas)"><span>Parto prematuro (menos de 37 semanas)</span></label>
+        <label class="opt"><input type="checkbox" name="ocorrencias" value="Restrição de crescimento fetal"><span>Restrição de crescimento fetal</span></label>
+        <label class="opt"><input type="checkbox" name="ocorrencias" value="Placenta prévia"><span>Placenta prévia</span></label>
+        <label class="opt"><input type="checkbox" name="ocorrencias" value="Descolamento de placenta"><span>Descolamento de placenta</span></label>
+        <label class="opt"><input type="checkbox" name="ocorrencias" value="Hemorragia pós-parto"><span>Hemorragia pós-parto</span></label>
+        <label class="opt"><input type="checkbox" name="ocorrencias" value="Insuficiência istmocervical / cerclagem"><span>Insuficiência istmocervical / cerclagem</span></label>
+        <label class="opt"><input type="checkbox" name="ocorrencias" value="Internação em UTI"><span>Internação em UTI</span></label>
+        <label class="opt"><input type="checkbox" name="ocorrencias" value="Nenhuma das anteriores"><span>Nenhuma das anteriores</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav">
+    <button type="button" class="btn-back" data-go="2">Voltar</button>
+    <button type="button" class="btn-next" data-go="4">Continuar</button>
+  </div>
+</section>
+
+<!-- ============ 4. SAÚDE GERAL ============ -->
+<section class="step" data-step="4" data-name="Saúde geral">
+  <div class="step-head">
+    <span class="step-num">Seção 4 de 11</span>
+    <h2>Saúde geral</h2>
+    <p class="note">Doenças e condições</p>
+  </div>
+
+  <div class="field">
+    <span class="q">Doenças ou condições que você possui ou já teve</span>
+    <span class="hint">Selecione todos que se aplicam</span>
+    <div class="opts">
+      <label class="opt"><input type="checkbox" name="doencas" value="Hipertensão arterial"><span>Hipertensão arterial</span></label>
+      <label class="opt"><input type="checkbox" name="doencas" value="Diabetes mellitus"><span>Diabetes mellitus</span></label>
+      <label class="opt"><input type="checkbox" name="doencas" value="Hipotireoidismo"><span>Hipotireoidismo</span></label>
+      <label class="opt"><input type="checkbox" name="doencas" value="Hipertireoidismo"><span>Hipertireoidismo</span></label>
+      <label class="opt"><input type="checkbox" name="doencas" value="Lúpus / doenças autoimunes"><span>Lúpus / doenças autoimunes</span></label>
+      <label class="opt"><input type="checkbox" name="doencas" value="Trombose / tromboembolismo pulmonar"><span>Trombose / tromboembolismo pulmonar</span></label>
+      <label class="opt"><input type="checkbox" name="doencas" value="Anemia (qualquer tipo)"><span>Anemia (qualquer tipo)</span></label>
+      <label class="opt"><input type="checkbox" name="doencas" value="Depressão / ansiedade / transtorno mental"><span>Depressão / ansiedade / transtorno mental</span></label>
+      <label class="opt"><input type="checkbox" name="doencas" value="Enxaqueca / cefaleia crônica"><span>Enxaqueca / cefaleia crônica</span></label>
+      <label class="opt"><input type="checkbox" name="doencas" value="Asma / bronquite / DPOC"><span>Asma / bronquite / DPOC</span></label>
+      <label class="opt"><input type="checkbox" name="doencas" value="Doença renal crônica"><span>Doença renal crônica</span></label>
+      <label class="opt"><input type="checkbox" name="doencas" value="Doença cardíaca"><span>Doença cardíaca</span></label>
+      <label class="opt"><input type="checkbox" name="doencas" value="Câncer (qualquer tipo)"><span>Câncer (qualquer tipo)</span></label>
+      <label class="opt"><input type="checkbox" name="doencas" value="Endometriose"><span>Endometriose</span></label>
+      <label class="opt"><input type="checkbox" name="doencas" value="Síndrome dos ovários policísticos (SOP)"><span>Síndrome dos ovários policísticos (SOP)</span></label>
+      <label class="opt"><input type="checkbox" name="doencas" value="Mioma uterino"><span>Mioma uterino</span></label>
+      <label class="opt"><input type="checkbox" name="doencas" value="Hepatite B ou C"><span>Hepatite B ou C</span></label>
+      <label class="opt"><input type="checkbox" name="doencas" value="HIV / AIDS"><span>HIV / AIDS</span></label>
+      <label class="opt"><input type="checkbox" name="doencas" value="Epilepsia"><span>Epilepsia</span></label>
+      <label class="opt"><input type="checkbox" name="doencas" value="Nenhuma das anteriores"><span>Nenhuma das anteriores</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="q" for="doencas_outras">Outras doenças não listadas acima</label>
+    <span class="hint">Descreva brevemente, se houver</span>
+    <textarea id="doencas_outras" name="doencas_outras" placeholder="Se não houver, pode deixar em branco"></textarea>
+  </div>
+
+  <div class="field">
+    <span class="q">Tipo sanguíneo</span>
+    <div class="opts two">
+      <label class="opt"><input type="radio" name="sangue" value="A+"><span>A+</span></label>
+      <label class="opt"><input type="radio" name="sangue" value="A−"><span>A−</span></label>
+      <label class="opt"><input type="radio" name="sangue" value="B+"><span>B+</span></label>
+      <label class="opt"><input type="radio" name="sangue" value="B−"><span>B−</span></label>
+      <label class="opt"><input type="radio" name="sangue" value="AB+"><span>AB+</span></label>
+      <label class="opt"><input type="radio" name="sangue" value="AB−"><span>AB−</span></label>
+      <label class="opt"><input type="radio" name="sangue" value="O+"><span>O+</span></label>
+      <label class="opt"><input type="radio" name="sangue" value="O−"><span>O−</span></label>
+    </div>
+    <div class="opts" style="margin-top:7px">
+      <label class="opt"><input type="radio" name="sangue" value="Não sei / não lembro"><span>Não sei / não lembro</span></label>
+    </div>
+  </div>
+
+  <div class="nav">
+    <button type="button" class="btn-back" data-go="3">Voltar</button>
+    <button type="button" class="btn-next" data-go="5">Continuar</button>
+  </div>
+</section>
+
+<!-- ============ 5. CIRURGIAS ============ -->
+<section class="step" data-step="5" data-name="Cirurgias anteriores">
+  <div class="step-head">
+    <span class="step-num">Seção 5 de 11</span>
+    <h2>Cirurgias anteriores</h2>
+  </div>
+
+  <div class="field">
+    <span class="q">Já realizou alguma cirurgia?</span>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="cirurgia" value="Não" data-hide="blocoCirurgia"><span>Não</span></label>
+      <label class="opt"><input type="radio" name="cirurgia" value="Sim" data-show="blocoCirurgia"><span>Sim</span></label>
+    </div>
+  </div>
+
+  <div class="conditional" id="blocoCirurgia">
+    <div class="field">
+      <span class="q">Quais cirurgias?</span>
+      <span class="hint">Selecione todas que se aplicam</span>
+      <div class="opts">
+        <label class="opt"><input type="checkbox" name="cirurgias" value="Cesariana"><span>Cesariana</span></label>
+        <label class="opt"><input type="checkbox" name="cirurgias" value="Laparoscopia ginecológica"><span>Laparoscopia ginecológica</span></label>
+        <label class="opt"><input type="checkbox" name="cirurgias" value="Histerectomia (retirada do útero)"><span>Histerectomia (retirada do útero)</span></label>
+        <label class="opt"><input type="checkbox" name="cirurgias" value="Miomectomia"><span>Miomectomia</span></label>
+        <label class="opt"><input type="checkbox" name="cirurgias" value="Ooforectomia (retirada de ovário)"><span>Ooforectomia (retirada de ovário)</span></label>
+        <label class="opt"><input type="checkbox" name="cirurgias" value="Conização / cirurgia de alta frequência no colo"><span>Conização / cirurgia de alta frequência no colo</span></label>
+        <label class="opt"><input type="checkbox" name="cirurgias" value="Apendicectomia"><span>Apendicectomia</span></label>
+        <label class="opt"><input type="checkbox" name="cirurgias" value="Colecistectomia (vesícula)"><span>Colecistectomia (vesícula)</span></label>
+        <label class="opt"><input type="checkbox" name="cirurgias" value="Cirurgia bariátrica"><span>Cirurgia bariátrica</span></label>
+        <label class="opt"><input type="checkbox" name="cirurgias" value="Cirurgia cardíaca / vascular"><span>Cirurgia cardíaca / vascular</span></label>
+        <label class="opt"><input type="checkbox" name="cirurgias" value="Cirurgia ortopédica"><span>Cirurgia ortopédica</span></label>
+        <label class="opt"><input type="checkbox" name="cirurgias" value="Cirurgia plástica / estética"><span>Cirurgia plástica / estética</span></label>
+        <label class="opt"><input type="checkbox" name="cirurgias" value="Outra"><span>Outra</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="q" for="cirurgias_det">Detalhe as cirurgias (tipo e ano aproximado)</label>
+      <textarea id="cirurgias_det" name="cirurgias_det" placeholder="Ex: Cesariana em 2019, laparoscopia por endometriose em 2021"></textarea>
+    </div>
+
+    <div class="field">
+      <span class="q">Teve alguma complicação com anestesia?</span>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="anestesia" value="Não"><span>Não</span></label>
+        <label class="opt"><input type="radio" name="anestesia" value="Sim" data-show="blocoAnestesia"><span>Sim</span></label>
+        <label class="opt"><input type="radio" name="anestesia" value="Não sei" data-hide="blocoAnestesia"><span>Não sei</span></label>
+      </div>
+      <div class="conditional" id="blocoAnestesia" style="margin-top:10px">
+        <input type="text" name="anestesia_det" placeholder="Descreva o que aconteceu">
+      </div>
+    </div>
+  </div>
+
+  <div class="nav">
+    <button type="button" class="btn-back" data-go="4">Voltar</button>
+    <button type="button" class="btn-next" data-go="6">Continuar</button>
+  </div>
+</section>
+<!-- ============ 6. MEDICAMENTOS E ALERGIAS ============ -->
+<section class="step" data-step="6" data-name="Medicamentos e alergias">
+  <div class="step-head">
+    <span class="step-num">Seção 6 de 11</span>
+    <h2>Medicamentos, alergias e intolerâncias</h2>
+  </div>
+
+  <div class="field">
+    <span class="q">Usa algum medicamento de uso contínuo?</span>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="medicamentos" value="Não" data-hide="blocoMed"><span>Não</span></label>
+      <label class="opt"><input type="radio" name="medicamentos" value="Sim" data-show="blocoMed"><span>Sim</span></label>
+    </div>
+    <div class="conditional" id="blocoMed" style="margin-top:12px">
+      <label class="q" for="med_lista">Liste os medicamentos e doses</label>
+      <textarea id="med_lista" name="med_lista" placeholder="Ex: Levotiroxina 50 mcg, Metformina 850 mg 2x/dia"></textarea>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="q">Possui alergia a medicamentos?</span>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="alergia_med" value="Não" data-hide="blocoAlergiaMed"><span>Não</span></label>
+      <label class="opt"><input type="radio" name="alergia_med" value="Sim" data-show="blocoAlergiaMed"><span>Sim</span></label>
+      <label class="opt"><input type="radio" name="alergia_med" value="Não sei" data-hide="blocoAlergiaMed"><span>Não sei</span></label>
+    </div>
+    <div class="conditional" id="blocoAlergiaMed" style="margin-top:12px">
+      <label class="q" for="alergia_det">Qual medicamento e qual a reação?</label>
+      <textarea id="alergia_det" name="alergia_det" placeholder="Ex: Dipirona — urticária; Penicilina — anafilaxia"></textarea>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="q">Outras alergias ou intolerâncias</span>
+    <span class="hint">Selecione todos que se aplicam</span>
+    <div class="opts">
+      <label class="opt"><input type="checkbox" name="alergias_outras" value="Látex"><span>Látex</span></label>
+      <label class="opt"><input type="checkbox" name="alergias_outras" value="Frutos do mar / iodo"><span>Frutos do mar / iodo</span></label>
+      <label class="opt"><input type="checkbox" name="alergias_outras" value="Intolerância à lactose"><span>Intolerância à lactose</span></label>
+      <label class="opt"><input type="checkbox" name="alergias_outras" value="Doença celíaca / intolerância ao glúten"><span>Doença celíaca / intolerância ao glúten</span></label>
+      <label class="opt"><input type="checkbox" name="alergias_outras" value="Alergia a contraste radiológico"><span>Alergia a contraste radiológico</span></label>
+      <label class="opt"><input type="checkbox" name="alergias_outras" value="Alergia alimentar (outra)" data-other="blocoAlimentar"><span>Alergia alimentar (outra)</span></label>
+      <label class="opt"><input type="checkbox" name="alergias_outras" value="Nenhuma"><span>Nenhuma</span></label>
+    </div>
+    <div class="conditional" id="blocoAlimentar" style="margin-top:10px">
+      <input type="text" name="alergia_alimentar" placeholder="Especifique qual alimento">
+    </div>
+  </div>
+
+  <div class="nav">
+    <button type="button" class="btn-back" data-go="5">Voltar</button>
+    <button type="button" class="btn-next" data-go="7">Continuar</button>
+  </div>
+</section>
+
+<!-- ============ 7. HÁBITOS ALIMENTARES ============ -->
+<section class="step" data-step="7" data-name="Hábitos alimentares">
+  <div class="step-head">
+    <span class="step-num">Seção 7 de 11</span>
+    <h2>Hábitos alimentares</h2>
+    <p class="note">Essas informações auxiliam na avaliação nutricional e no rastreamento de deficiências.</p>
+  </div>
+
+  <div class="field">
+    <span class="q">Proteínas animais que consome regularmente</span>
+    <span class="hint">Selecione todos que se aplicam</span>
+    <div class="opts">
+      <label class="opt"><input type="checkbox" name="proteinas" value="Carne vermelha (bovina / suína)"><span>Carne vermelha (bovina / suína)</span></label>
+      <label class="opt"><input type="checkbox" name="proteinas" value="Frango / aves"><span>Frango / aves</span></label>
+      <label class="opt"><input type="checkbox" name="proteinas" value="Peixe / frutos do mar"><span>Peixe / frutos do mar</span></label>
+      <label class="opt"><input type="checkbox" name="proteinas" value="Ovos"><span>Ovos</span></label>
+      <label class="opt"><input type="checkbox" name="proteinas" value="Não consumo nenhuma proteína animal"><span>Não consumo nenhuma proteína animal</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="q">Laticínios e derivados</span>
+    <div class="opts">
+      <label class="opt"><input type="checkbox" name="laticinios" value="Leite de vaca"><span>Leite de vaca</span></label>
+      <label class="opt"><input type="checkbox" name="laticinios" value="Queijos"><span>Queijos</span></label>
+      <label class="opt"><input type="checkbox" name="laticinios" value="Iogurte / kefir"><span>Iogurte / kefir</span></label>
+      <label class="opt"><input type="checkbox" name="laticinios" value="Não consumo laticínios"><span>Não consumo laticínios</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="q">Consumo de vegetais e legumes</span>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="vegetais" value="Diariamente"><span>Consumo diariamente</span></label>
+      <label class="opt"><input type="radio" name="vegetais" value="Algumas vezes por semana"><span>Consumo algumas vezes por semana</span></label>
+      <label class="opt"><input type="radio" name="vegetais" value="Raramente"><span>Raramente consumo</span></label>
+      <label class="opt"><input type="radio" name="vegetais" value="Não consumo"><span>Não consumo</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="q">Consumo de frutas</span>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="frutas" value="Diariamente"><span>Consumo diariamente</span></label>
+      <label class="opt"><input type="radio" name="frutas" value="Algumas vezes por semana"><span>Consumo algumas vezes por semana</span></label>
+      <label class="opt"><input type="radio" name="frutas" value="Raramente"><span>Raramente consumo</span></label>
+      <label class="opt"><input type="radio" name="frutas" value="Não consumo"><span>Não consumo</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="q">Grãos e cereais integrais</span>
+    <span class="hint">Arroz integral, aveia, quinoa, etc.</span>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="graos" value="Regularmente"><span>Consumo regularmente</span></label>
+      <label class="opt"><input type="radio" name="graos" value="Às vezes"><span>Consumo às vezes</span></label>
+      <label class="opt"><input type="radio" name="graos" value="Raramente / nunca"><span>Raramente / nunca consumo</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="q">Leguminosas</span>
+    <span class="hint">Feijão, lentilha, grão-de-bico, soja</span>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="leguminosas" value="Regularmente"><span>Consumo regularmente</span></label>
+      <label class="opt"><input type="radio" name="leguminosas" value="Às vezes"><span>Consumo às vezes</span></label>
+      <label class="opt"><input type="radio" name="leguminosas" value="Raramente / nunca"><span>Raramente / nunca consumo</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="q">Perfil alimentar geral</span>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="perfil_alim" value="Onívora"><span>Onívora (como de tudo)</span></label>
+      <label class="opt"><input type="radio" name="perfil_alim" value="Flexitariana"><span>Flexitariana (como pouca carne)</span></label>
+      <label class="opt"><input type="radio" name="perfil_alim" value="Vegetariana"><span>Vegetariana (sem carnes)</span></label>
+      <label class="opt"><input type="radio" name="perfil_alim" value="Vegana"><span>Vegana (sem nenhum produto animal)</span></label>
+      <label class="opt"><input type="radio" name="perfil_alim" value="Outro regime / dieta específica" data-show="blocoDieta"><span>Outro regime / dieta específica</span></label>
+    </div>
+    <div class="conditional" id="blocoDieta" style="margin-top:10px">
+      <input type="text" name="dieta_qual" placeholder="Ex: low carb, sem glúten, cetogênica, dieta para diabetes...">
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="q">Uso de suplementos alimentares ou vitamínicos</span>
+    <span class="hint">Selecione todos que se aplicam</span>
+    <div class="opts">
+      <label class="opt"><input type="checkbox" name="suplementos" value="Vitamina D"><span>Vitamina D</span></label>
+      <label class="opt"><input type="checkbox" name="suplementos" value="Ferro"><span>Ferro</span></label>
+      <label class="opt"><input type="checkbox" name="suplementos" value="Ácido fólico / folato"><span>Ácido fólico / folato</span></label>
+      <label class="opt"><input type="checkbox" name="suplementos" value="Ômega-3"><span>Ômega-3</span></label>
+      <label class="opt"><input type="checkbox" name="suplementos" value="Vitamina B12"><span>Vitamina B12</span></label>
+      <label class="opt"><input type="checkbox" name="suplementos" value="Cálcio"><span>Cálcio</span></label>
+      <label class="opt"><input type="checkbox" name="suplementos" value="Magnésio"><span>Magnésio</span></label>
+      <label class="opt"><input type="checkbox" name="suplementos" value="Proteína (whey / vegetal)"><span>Proteína (whey / vegetal)</span></label>
+      <label class="opt"><input type="checkbox" name="suplementos" value="Outro suplemento" data-other="blocoSupl"><span>Outro suplemento</span></label>
+      <label class="opt"><input type="checkbox" name="suplementos" value="Não uso suplementos"><span>Não uso suplementos</span></label>
+    </div>
+    <div class="conditional" id="blocoSupl" style="margin-top:10px">
+      <input type="text" name="suplemento_qual" placeholder="Qual suplemento e dose">
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="q">Consumo de água ao dia</span>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="agua" value="Menos de 1 litro"><span>Menos de 1 litro</span></label>
+      <label class="opt"><input type="radio" name="agua" value="1 a 2 litros"><span>1 a 2 litros</span></label>
+      <label class="opt"><input type="radio" name="agua" value="Mais de 2 litros"><span>Mais de 2 litros</span></label>
+      <label class="opt"><input type="radio" name="agua" value="Não tenho controle"><span>Não tenho controle</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="q">Consumo de ultraprocessados</span>
+    <span class="hint">Fast food, embutidos, refrigerantes, guloseimas</span>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="ultraproc" value="Raramente / nunca"><span>Raramente / nunca</span></label>
+      <label class="opt"><input type="radio" name="ultraproc" value="1 a 2 vezes por semana"><span>1 a 2 vezes por semana</span></label>
+      <label class="opt"><input type="radio" name="ultraproc" value="3 ou mais vezes por semana"><span>Frequentemente (3 ou mais vezes por semana)</span></label>
+      <label class="opt"><input type="radio" name="ultraproc" value="Diariamente"><span>Diariamente</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="q">Consumo de cafeína ao dia</span>
+    <span class="hint">Café, chá preto ou verde, refrigerante de cola, energético</span>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="cafeina" value="Não consumo"><span>Não consumo</span></label>
+      <label class="opt"><input type="radio" name="cafeina" value="1 a 2 xícaras"><span>1 a 2 xícaras</span></label>
+      <label class="opt"><input type="radio" name="cafeina" value="3 a 4 xícaras"><span>3 a 4 xícaras</span></label>
+      <label class="opt"><input type="radio" name="cafeina" value="5 ou mais xícaras"><span>5 ou mais xícaras</span></label>
+    </div>
+  </div>
+
+  <div class="nav">
+    <button type="button" class="btn-back" data-go="6">Voltar</button>
+    <button type="button" class="btn-next" data-go="8">Continuar</button>
+  </div>
+</section>
+
+<!-- ============ 8. HÁBITOS DE VIDA ============ -->
+<section class="step" data-step="8" data-name="Hábitos de vida">
+  <div class="step-head">
+    <span class="step-num">Seção 8 de 11</span>
+    <h2>Hábitos de vida</h2>
+  </div>
+
+  <div class="field">
+    <span class="q">Tabagismo</span>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="tabagismo" value="Nunca fumei"><span>Nunca fumei</span></label>
+      <label class="opt"><input type="radio" name="tabagismo" value="Ex-fumante"><span>Ex-fumante</span></label>
+      <label class="opt"><input type="radio" name="tabagismo" value="Fumante atual"><span>Fumante atual</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="q">Consumo de álcool</span>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="alcool" value="Não bebo"><span>Não bebo</span></label>
+      <label class="opt"><input type="radio" name="alcool" value="Ocasional (fins de semana)"><span>Ocasional (fins de semana)</span></label>
+      <label class="opt"><input type="radio" name="alcool" value="Regular (alguns dias por semana)"><span>Regular (alguns dias por semana)</span></label>
+      <label class="opt"><input type="radio" name="alcool" value="Diário"><span>Diário</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="q">Atividade física</span>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="atividade" value="Sedentária"><span>Sedentária</span></label>
+      <label class="opt"><input type="radio" name="atividade" value="Leve (1 a 2 vezes por semana)"><span>Leve (1 a 2 vezes por semana)</span></label>
+      <label class="opt"><input type="radio" name="atividade" value="Moderada (3 a 4 vezes por semana)"><span>Moderada (3 a 4 vezes por semana)</span></label>
+      <label class="opt"><input type="radio" name="atividade" value="Intensa (5 vezes ou mais por semana)"><span>Intensa (5 vezes ou mais por semana)</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="q">Qualidade do sono</span>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="sono" value="Durmo bem (7 a 8h regulares)"><span>Durmo bem (7 a 8h regulares)</span></label>
+      <label class="opt"><input type="radio" name="sono" value="Durmo pouco (menos de 6h)"><span>Durmo pouco (menos de 6h)</span></label>
+      <label class="opt"><input type="radio" name="sono" value="Insônia frequente"><span>Insônia frequente</span></label>
+      <label class="opt"><input type="radio" name="sono" value="Sonolência excessiva durante o dia"><span>Sonolência excessiva durante o dia</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="q">Uso de drogas recreativas</span>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="drogas" value="Não"><span>Não</span></label>
+      <label class="opt"><input type="radio" name="drogas" value="Ocasional"><span>Ocasional</span></label>
+      <label class="opt"><input type="radio" name="drogas" value="Prefiro não informar"><span>Prefiro não informar</span></label>
+    </div>
+  </div>
+
+  <div class="nav">
+    <button type="button" class="btn-back" data-go="7">Voltar</button>
+    <button type="button" class="btn-next" data-go="9">Continuar</button>
+  </div>
+</section>
+
+<!-- ============ 9. HISTÓRICO FAMILIAR ============ -->
+<section class="step" data-step="9" data-name="Histórico familiar">
+  <div class="step-head">
+    <span class="step-num">Seção 9 de 11</span>
+    <h2>Histórico familiar</h2>
+  </div>
+
+  <div class="field">
+    <span class="q">Doenças em familiares de primeiro grau</span>
+    <span class="hint">Pais, irmãos, filhos — selecione todos que se aplicam</span>
+    <div class="opts">
+      <label class="opt"><input type="checkbox" name="familiar" value="Hipertensão arterial"><span>Hipertensão arterial</span></label>
+      <label class="opt"><input type="checkbox" name="familiar" value="Diabetes tipo 2"><span>Diabetes tipo 2</span></label>
+      <label class="opt"><input type="checkbox" name="familiar" value="Câncer de mama"><span>Câncer de mama</span></label>
+      <label class="opt"><input type="checkbox" name="familiar" value="Câncer de ovário / endométrio"><span>Câncer de ovário / endométrio</span></label>
+      <label class="opt"><input type="checkbox" name="familiar" value="Câncer colorretal"><span>Câncer colorretal</span></label>
+      <label class="opt"><input type="checkbox" name="familiar" value="Doença cardíaca precoce"><span>Doença cardíaca precoce (antes dos 55 anos em homem / 65 em mulher)</span></label>
+      <label class="opt"><input type="checkbox" name="familiar" value="Trombose / tromboembolismo"><span>Trombose / tromboembolismo</span></label>
+      <label class="opt"><input type="checkbox" name="familiar" value="Doenças autoimunes"><span>Doenças autoimunes</span></label>
+      <label class="opt"><input type="checkbox" name="familiar" value="Doenças genéticas / cromossômicas"><span>Doenças genéticas / cromossômicas</span></label>
+      <label class="opt"><input type="checkbox" name="familiar" value="Transtornos mentais"><span>Transtornos mentais (depressão, bipolar, esquizofrenia, etc.)</span></label>
+      <label class="opt"><input type="checkbox" name="familiar" value="Nenhuma das anteriores"><span>Nenhuma das anteriores</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="q" for="familiar_det">Outros dados familiares relevantes</label>
+    <textarea id="familiar_det" name="familiar_det" placeholder="Ex: Mãe com câncer de mama diagnosticado aos 45 anos, irmã com lúpus"></textarea>
+  </div>
+
+  <div class="nav">
+    <button type="button" class="btn-back" data-go="8">Voltar</button>
+    <button type="button" class="btn-next" data-go="10">Continuar</button>
+  </div>
+</section>
+
+<!-- ============ 10. CONTRACEPÇÃO E RASTREAMENTO ============ -->
+<section class="step" data-step="10" data-name="Contracepção e rastreamento">
+  <div class="step-head">
+    <span class="step-num">Seção 10 de 11</span>
+    <h2>Contracepção e rastreamento cervical</h2>
+  </div>
+
+  <div class="field">
+    <span class="q">Método contraceptivo atual</span>
+    <span class="hint">Selecione todos que se aplicam</span>
+    <div class="opts">
+      <label class="opt"><input type="checkbox" name="contracepcao" value="Nenhum"><span>Nenhum</span></label>
+      <label class="opt"><input type="checkbox" name="contracepcao" value="Pílula anticoncepcional combinada"><span>Pílula anticoncepcional combinada</span></label>
+      <label class="opt"><input type="checkbox" name="contracepcao" value="Pílula somente progestágeno (minipílula)"><span>Pílula somente progestágeno (minipílula)</span></label>
+      <label class="opt"><input type="checkbox" name="contracepcao" value="DIU de cobre"><span>DIU de cobre</span></label>
+      <label class="opt"><input type="checkbox" name="contracepcao" value="DIU hormonal (Mirena / Kyleena)"><span>DIU hormonal (Mirena / Kyleena)</span></label>
+      <label class="opt"><input type="checkbox" name="contracepcao" value="Implante subdérmico"><span>Implante subdérmico</span></label>
+      <label class="opt"><input type="checkbox" name="contracepcao" value="Injeção mensal ou trimestral"><span>Injeção mensal ou trimestral</span></label>
+      <label class="opt"><input type="checkbox" name="contracepcao" value="Preservativo"><span>Preservativo (masculino ou feminino)</span></label>
+      <label class="opt"><input type="checkbox" name="contracepcao" value="Laqueadura tubária"><span>Laqueadura tubária</span></label>
+      <label class="opt"><input type="checkbox" name="contracepcao" value="Parceiro vasectomizado"><span>Parceiro vasectomizado</span></label>
+      <label class="opt"><input type="checkbox" name="contracepcao" value="Método comportamental / natural"><span>Método comportamental / natural</span></label>
+      <label class="opt"><input type="checkbox" name="contracepcao" value="Outro" data-other="blocoContra"><span>Outro</span></label>
+    </div>
+    <div class="conditional" id="blocoContra" style="margin-top:10px">
+      <input type="text" name="contracepcao_outro" placeholder="Qual método">
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="q" for="papanicolau_data">Data do último Papanicolau</label>
+    <span class="hint">Colpocitologia oncótica — MM/AAAA, ou escreva "nunca realizei"</span>
+    <input type="text" id="papanicolau_data" name="papanicolau_data" placeholder="Ex: 03/2024">
+  </div>
+
+  <div class="field">
+    <span class="q">Último resultado do Papanicolau</span>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="papanicolau_res" value="Normal / negativo"><span>Normal / negativo</span></label>
+      <label class="opt"><input type="radio" name="papanicolau_res" value="Alterado (solicitou complementação)"><span>Alterado (solicitou complementação)</span></label>
+      <label class="opt"><input type="radio" name="papanicolau_res" value="Não sei / não lembro"><span>Não sei / não lembro</span></label>
+      <label class="opt"><input type="radio" name="papanicolau_res" value="Nunca realizei"><span>Nunca realizei</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="q" for="mamografia">Data da última mamografia ou ultrassom de mamas</label>
+    <span class="hint">MM/AAAA, ou escreva "nunca realizei"</span>
+    <input type="text" id="mamografia" name="mamografia" placeholder="Ex: 08/2024">
+  </div>
+
+  <div class="nav">
+    <button type="button" class="btn-back" data-go="9">Voltar</button>
+    <button type="button" class="btn-next" data-go="11">Continuar</button>
+  </div>
+</section>
+
+<!-- ============ 11. INFORMAÇÕES ADICIONAIS ============ -->
+<section class="step" data-step="11" data-name="Informações adicionais">
+  <div class="step-head">
+    <span class="step-num">Seção 11 de 11</span>
+    <h2>Informações adicionais</h2>
+  </div>
+
+  <div class="field">
+    <label class="q" for="adicional">Há algo mais que gostaria de compartilhar antes da consulta?</label>
+    <span class="hint">Dúvidas, queixas específicas, informações que considerar relevantes</span>
+    <textarea id="adicional" name="adicional" style="min-height:130px" placeholder="Escreva à vontade"></textarea>
+  </div>
+
+  <div class="field">
+    <span class="q">Como ficou sabendo do consultório?</span>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="origem" value="Indicação médica"><span>Indicação médica</span></label>
+      <label class="opt"><input type="radio" name="origem" value="Indicação de amiga / familiar"><span>Indicação de amiga / familiar</span></label>
+      <label class="opt"><input type="radio" name="origem" value="Instagram / redes sociais"><span>Instagram / redes sociais</span></label>
+      <label class="opt"><input type="radio" name="origem" value="Google"><span>Google</span></label>
+      <label class="opt"><input type="radio" name="origem" value="Plano de saúde"><span>Plano de saúde</span></label>
+      <label class="opt"><input type="radio" name="origem" value="Outro"><span>Outro</span></label>
+    </div>
+  </div>
+
+  <div class="nav">
+    <button type="button" class="btn-back" data-go="10">Voltar</button>
+    <button type="button" class="btn-next" data-go="12">Revisar respostas</button>
+  </div>
+</section>
+
+<!-- ============ REVISÃO E ENVIO ============ -->
+<section class="step" data-step="12" data-name="Revisão e envio">
+  <div class="step-head">
+    <span class="step-num">Última etapa</span>
+    <h2>Confira suas respostas</h2>
+    <p class="note">Se algo estiver incompleto, volte e ajuste antes de enviar.</p>
+  </div>
+
+  <div class="review" id="review"></div>
+
+  <div class="send">
+    <div class="send-step">
+      <span class="send-num">1</span>
+      <div class="send-body">
+        <b>Envie suas respostas</b>
+        <p>O WhatsApp abre com todas as respostas já escritas na mensagem. Você só precisa tocar em enviar.</p>
+        <button type="button" class="btn-act primary" id="btnWhats">Enviar pelo WhatsApp</button>
+        <button type="button" class="btn-act" id="btnMail">Enviar por e-mail</button>
+      </div>
+    </div>
+
+    <div class="send-step">
+      <span class="send-num">2</span>
+      <div class="send-body">
+        <b>Guarde uma cópia em PDF <span style="font-weight:400;color:var(--muted)">(opcional)</span></b>
+        <p>Um arquivo organizado com suas respostas, para levar à consulta ou guardar.</p>
+        <button type="button" class="btn-act" id="btnPdf">Baixar PDF</button>
+      </div>
+    </div>
+
+    <div class="send-step" id="stepAuto" style="display:none">
+      <span class="send-num">3</span>
+      <div class="send-body">
+        <b>Ou envie as respostas direto para o consultório</b>
+        <p>Envia o texto das suas respostas por e-mail, sem sair desta página. O PDF continua sendo pelo WhatsApp.</p>
+        <button type="button" class="btn-act primary" id="btnAutoInner">Enviar respostas agora</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav" style="flex-direction:column;align-items:stretch;gap:10px">
+    <button type="button" class="btn-next" id="btnCopy" style="background:none;color:var(--green);border:1px solid var(--line)">Copiar respostas como texto</button>
+    <button type="button" class="btn-back" data-go="11" style="align-self:center">Voltar e revisar</button>
+  </div>
+  <div class="saved" id="copied">Respostas copiadas</div>
+  <div class="saved" id="sendMsg"></div>
+</section>
+
+<div class="saved" id="autosave">Respostas salvas neste aparelho</div>
+
+</main>
+
+<footer>
+  <div class="name">Dr. Alberto D'Auria</div>
+  <div class="crm">Ginecologia e obstetrícia de alto risco · CRM 129037 · RQE 35398</div>
+  <div class="addr">Rua Itapeva, 378 — São Paulo, SP</div>
+</footer>
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- CONFIGURAÇÃO ---------- */
+  var WHATSAPP   = "5511953519011";              // WhatsApp que recebe as respostas
+  var EMAIL_PARA = "clinicadauria@gmail.com";    // destinatário
+  var EMAIL_COPIA= "albertodauria@gmail.com";    // cópia
+
+  // Envio automático via Formspree. Deixe "" para manter desligado.
+  // Cole o endpoint no formato: https://formspree.io/f/xxxxxxxx
+  // Plano gratuito: envia as respostas em texto (sem anexo). O PDF segue
+  // pelo WhatsApp, anexado pela paciente no passo 2.
+  var FORMSPREE  = "https://formspree.io/f/xpqvrgyo";
+
+  var STORE = "anamnese_dauria_v1";
+  var steps = Array.prototype.slice.call(document.querySelectorAll("section.step"));
+  var TOTAL = 11;
+  var bar = document.getElementById("bar");
+  var stepName = document.getElementById("stepName");
+  var stepCount = document.getElementById("stepCount");
+  var current = 0;
+
+  /* ---------- NAVEGAÇÃO ---------- */
+  function show(n){
+    var target = steps.filter(function(s){ return +s.dataset.step === n; })[0];
+    if(!target) return;
+    steps.forEach(function(s){ s.classList.remove("active"); });
+    target.classList.add("active");
+    current = n;
+    stepName.textContent = target.dataset.name;
+    var shown = Math.min(n, TOTAL);
+    stepCount.textContent = (n > TOTAL ? "Revisão" : shown + " de " + TOTAL);
+    bar.style.width = (Math.min(n, TOTAL) / TOTAL * 100) + "%";
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+
+  document.addEventListener("click", function(e){
+    var btn = e.target.closest("[data-go]");
+    if(!btn) return;
+    var to = +btn.dataset.go;
+    if(btn.classList.contains("btn-next") && !validate(current)) return;
+    if(to === 12) buildReview();
+    show(to);
+  });
+
+  /* ---------- VALIDAÇÃO ---------- */
+  function validate(n){
+    var sec = steps.filter(function(s){ return +s.dataset.step === n; })[0];
+    if(!sec) return true;
+    var ok = true, firstBad = null;
+
+    sec.querySelectorAll("[data-req]").forEach(function(el){
+      var msg = el.parentElement.querySelector(".errmsg");
+      var bad = !el.value.trim();
+      if(!bad && el.dataset.mask === "date") bad = !validDate(el.value);
+      el.classList.toggle("invalid", bad);
+      if(msg) msg.classList.toggle("show", bad);
+      if(bad){ ok = false; firstBad = firstBad || el; }
+    });
+
+    sec.querySelectorAll("[data-req-group]").forEach(function(grp){
+      var name = grp.dataset.reqGroup;
+      var any = sec.querySelector('[name="'+name+'"]:checked');
+      var msg = grp.parentElement.querySelector(".errmsg");
+      if(msg) msg.classList.toggle("show", !any);
+      if(!any){ ok = false; firstBad = firstBad || grp; }
+    });
+
+    if(firstBad) firstBad.scrollIntoView({behavior:"smooth", block:"center"});
+    return ok;
+  }
+
+  function validDate(v){
+    var m = v.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+    if(!m) return false;
+    var d = +m[1], mo = +m[2], y = +m[3];
+    if(mo < 1 || mo > 12 || d < 1 || d > 31) return false;
+    if(y < 1900 || y > new Date().getFullYear()) return false;
+    var dt = new Date(y, mo - 1, d);
+    return dt.getDate() === d && dt.getMonth() === mo - 1;
+  }
+
+  /* ---------- MÁSCARAS ---------- */
+  document.querySelectorAll("[data-mask]").forEach(function(el){
+    el.addEventListener("input", function(){
+      var v = el.value.replace(/\D/g, "");
+      if(el.dataset.mask === "date"){
+        if(v.length > 4) v = v.slice(0,2)+"/"+v.slice(2,4)+"/"+v.slice(4,8);
+        else if(v.length > 2) v = v.slice(0,2)+"/"+v.slice(2);
+      }
+      if(el.dataset.mask === "cpf"){
+        v = v.slice(0,11);
+        if(v.length > 9) v = v.slice(0,3)+"."+v.slice(3,6)+"."+v.slice(6,9)+"-"+v.slice(9);
+        else if(v.length > 6) v = v.slice(0,3)+"."+v.slice(3,6)+"."+v.slice(6);
+        else if(v.length > 3) v = v.slice(0,3)+"."+v.slice(3);
+      }
+      if(el.dataset.mask === "phone"){
+        v = v.slice(0,11);
+        if(v.length > 10) v = "("+v.slice(0,2)+") "+v.slice(2,7)+"-"+v.slice(7);
+        else if(v.length > 6) v = "("+v.slice(0,2)+") "+v.slice(2,6)+"-"+v.slice(6);
+        else if(v.length > 2) v = "("+v.slice(0,2)+") "+v.slice(2);
+        else if(v.length > 0) v = "("+v;
+      }
+      el.value = v;
+      el.classList.remove("invalid");
+      var msg = el.parentElement.querySelector(".errmsg");
+      if(msg) msg.classList.remove("show");
+    });
+  });
+
+  /* ---------- CAMPOS CONDICIONAIS ---------- */
+  function toggleConditionals(){
+    document.querySelectorAll("input[data-show]").forEach(function(el){
+      var t = document.getElementById(el.dataset.show);
+      if(t && el.checked) t.classList.add("show");
+    });
+    document.querySelectorAll("input[data-hide]").forEach(function(el){
+      var t = document.getElementById(el.dataset.hide);
+      if(t && el.checked) t.classList.remove("show");
+    });
+    document.querySelectorAll("input[data-other]").forEach(function(el){
+      var t = document.getElementById(el.dataset.other);
+      if(t) t.classList.toggle("show", el.checked);
+    });
+  }
+
+  document.addEventListener("change", function(e){
+    var el = e.target;
+    if(el.type === "radio"){
+      // ao trocar de opção no mesmo grupo, reavalia todos os blocos do grupo
+      document.querySelectorAll('input[name="'+el.name+'"]').forEach(function(sib){
+        if(sib.dataset.show){
+          var t = document.getElementById(sib.dataset.show);
+          if(t) t.classList.toggle("show", sib.checked);
+        }
+      });
+    }
+    toggleConditionals();
+    save();
+    if(el.type === "radio" || el.type === "checkbox"){
+      var grp = el.closest("[data-req-group]");
+      if(grp){
+        var msg = grp.parentElement.querySelector(".errmsg");
+        if(msg) msg.classList.remove("show");
+      }
+    }
+  });
+
+  /* ---------- SALVAMENTO LOCAL ---------- */
+  var saveTimer, autosave = document.getElementById("autosave");
+  function save(){
+    var data = {};
+    document.querySelectorAll("input, textarea, select").forEach(function(el){
+      if(!el.name) return;
+      if(el.type === "checkbox" || el.type === "radio"){
+        if(el.checked){
+          if(!data[el.name]) data[el.name] = [];
+          data[el.name].push(el.value);
+        }
+      } else if(el.value){
+        data[el.name] = el.value;
+      }
+    });
+    try{ localStorage.setItem(STORE, JSON.stringify(data)); }catch(err){}
+    clearTimeout(saveTimer);
+    autosave.classList.add("show");
+    saveTimer = setTimeout(function(){ autosave.classList.remove("show"); }, 1600);
+  }
+
+  function restore(){
+    var raw;
+    try{ raw = localStorage.getItem(STORE); }catch(err){ return; }
+    if(!raw) return;
+    var data;
+    try{ data = JSON.parse(raw); }catch(err){ return; }
+    Object.keys(data).forEach(function(name){
+      var val = data[name];
+      var els = document.getElementsByName(name);
+      if(!els.length) return;
+      if(Array.isArray(val)){
+        Array.prototype.forEach.call(els, function(el){
+          if(val.indexOf(el.value) !== -1) el.checked = true;
+        });
+      } else {
+        els[0].value = val;
+      }
+    });
+    toggleConditionals();
+  }
+
+  document.addEventListener("input", function(e){
+    if(e.target.matches("input, textarea, select")) save();
+  });
+
+  /* ---------- REVISÃO ---------- */
+  var MAP = [
+    ["Identificação", [
+      ["nome","Nome"],["nasc","Data de nascimento"],["tel","Telefone"],
+      ["email","E-mail"],["cpf","CPF"],["motivo","Motivo da consulta"],
+      ["motivo_outro","Outro motivo"]
+    ]],
+    ["Histórico menstrual", [
+      ["ciclos","Ciclos"],["dum","Última menstruação"],["ciclo_dur","Duração do ciclo (dias)"],
+      ["mens_dur","Duração da menstruação (dias)"],["fluxo","Fluxo"],["colicas","Cólicas"]
+    ]],
+    ["Histórico obstétrico", [
+      ["gravida","Já esteve grávida"],["n_gesta","Gestações"],["n_partos","Partos normais"],
+      ["n_cesareas","Cesáreas"],["n_filhos","Filhos vivos"],["abortos","Abortamentos"],
+      ["ocorrencias","Ocorrências anteriores"]
+    ]],
+    ["Saúde geral", [
+      ["doencas","Doenças / condições"],["doencas_outras","Outras doenças"],["sangue","Tipo sanguíneo"]
+    ]],
+    ["Cirurgias", [
+      ["cirurgia","Já operou"],["cirurgias","Cirurgias"],["cirurgias_det","Detalhes"],
+      ["anestesia","Complicação anestésica"],["anestesia_det","Detalhe da anestesia"]
+    ]],
+    ["Medicamentos e alergias", [
+      ["medicamentos","Uso contínuo"],["med_lista","Medicamentos"],
+      ["alergia_med","Alergia a medicamentos"],["alergia_det","Detalhe da alergia"],
+      ["alergias_outras","Outras alergias"],["alergia_alimentar","Alergia alimentar"]
+    ]],
+    ["Hábitos alimentares", [
+      ["proteinas","Proteínas animais"],["laticinios","Laticínios"],["vegetais","Vegetais"],
+      ["frutas","Frutas"],["graos","Grãos integrais"],["leguminosas","Leguminosas"],
+      ["perfil_alim","Perfil alimentar"],["dieta_qual","Dieta específica"],
+      ["suplementos","Suplementos"],["suplemento_qual","Outro suplemento"],
+      ["agua","Água por dia"],["ultraproc","Ultraprocessados"],["cafeina","Cafeína"]
+    ]],
+    ["Hábitos de vida", [
+      ["tabagismo","Tabagismo"],["alcool","Álcool"],["atividade","Atividade física"],
+      ["sono","Sono"],["drogas","Drogas recreativas"]
+    ]],
+    ["Histórico familiar", [
+      ["familiar","Doenças familiares"],["familiar_det","Outros dados"]
+    ]],
+    ["Contracepção e rastreamento", [
+      ["contracepcao","Método atual"],["contracepcao_outro","Outro método"],
+      ["papanicolau_data","Último Papanicolau"],["papanicolau_res","Resultado"],
+      ["mamografia","Última mamografia / US mamas"]
+    ]],
+    ["Informações adicionais", [
+      ["adicional","Observações"],["origem","Como conheceu o consultório"]
+    ]]
+  ];
+
+  function getVal(name){
+    var els = document.getElementsByName(name);
+    if(!els.length) return "";
+    var first = els[0];
+    if(first.type === "checkbox" || first.type === "radio"){
+      var picked = [];
+      Array.prototype.forEach.call(els, function(el){
+        if(el.checked) picked.push(el.value);
+      });
+      return picked.join(", ");
+    }
+    return first.value.trim();
+  }
+
+  function esc(s){
+    return String(s).replace(/[&<>"]/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];
+    });
+  }
+
+  function buildReview(){
+    var box = document.getElementById("review");
+    var html = "";
+    MAP.forEach(function(block){
+      var rows = "";
+      block[1].forEach(function(f){
+        var v = getVal(f[0]);
+        if(v) rows += '<div class="item"><b>'+esc(f[1])+':</b> '+esc(v)+'</div>';
+      });
+      if(rows) html += "<h3>"+esc(block[0])+"</h3>"+rows;
+    });
+    box.innerHTML = html || '<div class="empty">Nenhuma resposta preenchida ainda.</div>';
+  }
+
+  function buildText(){
+    var out = "ANAMNESE PRÉ-CONSULTA\nDr. Alberto D'Auria\n";
+    out += "Enviado em " + new Date().toLocaleDateString("pt-BR") + "\n";
+    MAP.forEach(function(block){
+      var rows = "";
+      block[1].forEach(function(f){
+        var v = getVal(f[0]);
+        if(v) rows += "• " + f[1] + ": " + v + "\n";
+      });
+      if(rows) out += "\n— " + block[0].toUpperCase() + " —\n" + rows;
+    });
+    return out;
+  }
+
+  /* ---------- GERAÇÃO DO PDF ---------- */
+  function pacienteNome(){
+    return (getVal("nome") || "paciente").trim();
+  }
+
+  function pdfNome(){
+    var slug = pacienteNome()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-zA-Z0-9]+/g, "-").replace(/^-|-$/g, "").toLowerCase();
+    var d = new Date();
+    var stamp = d.getFullYear() + "-" +
+                String(d.getMonth()+1).padStart(2,"0") + "-" +
+                String(d.getDate()).padStart(2,"0");
+    return "anamnese-" + (slug || "paciente") + "-" + stamp + ".pdf";
+  }
+
+  var pdfBlob = null;
+
+  function buildPDF(){
+    if(!window.jspdf || !window.jspdf.jsPDF) return null;
+    var doc = new window.jspdf.jsPDF({unit:"pt", format:"a4"});
+    var W = doc.internal.pageSize.getWidth();
+    var H = doc.internal.pageSize.getHeight();
+    var M = 56, y = 0;
+
+    var GREEN = [45,80,76], GOLD = [201,163,104], INK = [35,48,46], MUTED = [107,123,120];
+
+    function header(){
+      doc.setFillColor(GREEN[0],GREEN[1],GREEN[2]);
+      doc.rect(0,0,W,92,"F");
+      doc.setFillColor(GOLD[0],GOLD[1],GOLD[2]);
+      doc.rect(0,90,W,2,"F");
+      doc.setTextColor(244,239,230);
+      doc.setFont("helvetica","bold").setFontSize(13);
+      doc.text("ALBERTO D'AURIA", W/2, 38, {align:"center", charSpace:2.2});
+      doc.setTextColor(GOLD[0],GOLD[1],GOLD[2]);
+      doc.setFont("helvetica","normal").setFontSize(7.2);
+      doc.text("GINECOLOGIA  ·  MEDICINA FETAL  ·  OBSTETRICIA DE ALTO RISCO",
+               W/2, 55, {align:"center", charSpace:1.1});
+      doc.setTextColor(244,239,230);
+      doc.setFontSize(9.5);
+      doc.text("ANAMNESE PRE-CONSULTA", W/2, 76, {align:"center", charSpace:1.6});
+      y = 128;
+    }
+
+    function footer(){
+      var pages = doc.internal.getNumberOfPages();
+      for(var i=1;i<=pages;i++){
+        doc.setPage(i);
+        doc.setDrawColor(220,211,196);
+        doc.line(M, H-46, W-M, H-46);
+        doc.setTextColor(MUTED[0],MUTED[1],MUTED[2]);
+        doc.setFont("helvetica","normal").setFontSize(7.5);
+        doc.text("CRM 129037  ·  RQE 35398  ·  Rua Itapeva, 378 — Sao Paulo, SP", M, H-32);
+        doc.text(i + "/" + pages, W-M, H-32, {align:"right"});
+      }
+    }
+
+    function space(need){
+      if(y + need > H - 70){ doc.addPage(); y = 62; }
+    }
+
+    header();
+
+    // Bloco de identificação em destaque
+    doc.setFillColor(251,248,242);
+    doc.setDrawColor(220,211,196);
+    doc.rect(M, y, W-M*2, 52, "FD");
+    doc.setFillColor(GOLD[0],GOLD[1],GOLD[2]);
+    doc.rect(M, y, 3, 52, "F");
+    doc.setTextColor(GREEN[0],GREEN[1],GREEN[2]);
+    doc.setFont("helvetica","bold").setFontSize(12.5);
+    doc.text(pacienteNome().slice(0,52), M+16, y+22);
+    doc.setTextColor(MUTED[0],MUTED[1],MUTED[2]);
+    doc.setFont("helvetica","normal").setFontSize(8.5);
+    var linha2 = [];
+    if(getVal("nasc")) linha2.push("Nasc. " + getVal("nasc"));
+    if(getVal("tel"))  linha2.push(getVal("tel"));
+    if(getVal("cpf"))  linha2.push("CPF " + getVal("cpf"));
+    linha2.push("Preenchido em " + new Date().toLocaleDateString("pt-BR"));
+    doc.text(linha2.join("   ·   "), M+16, y+39);
+    y += 76;
+
+    MAP.forEach(function(block){
+      var rows = [];
+      block[1].forEach(function(f){
+        var v = getVal(f[0]);
+        if(v) rows.push([f[1], v]);
+      });
+      if(!rows.length) return;
+
+      space(54);
+      doc.setTextColor(GOLD[0],GOLD[1],GOLD[2]);
+      doc.setFont("helvetica","bold").setFontSize(8.2);
+      doc.text(block[0].toUpperCase(), M, y, {charSpace:1.3});
+      y += 7;
+      doc.setDrawColor(220,211,196);
+      doc.line(M, y, W-M, y);
+      y += 15;
+
+      rows.forEach(function(r){
+        var label = r[0] + ": ";
+        doc.setFont("helvetica","bold").setFontSize(9);
+        var lw = doc.getTextWidth(label);
+        doc.setFont("helvetica","normal").setFontSize(9);
+        var lines = doc.splitTextToSize(r[1], W-M*2-lw);
+
+        space(lines.length * 12 + 6);
+        doc.setTextColor(GREEN[0],GREEN[1],GREEN[2]);
+        doc.setFont("helvetica","bold").setFontSize(9);
+        doc.text(label, M, y);
+        doc.setTextColor(INK[0],INK[1],INK[2]);
+        doc.setFont("helvetica","normal").setFontSize(9);
+        doc.text(lines[0], M+lw, y);
+        for(var i=1;i<lines.length;i++){
+          y += 12; space(12);
+          doc.text(lines[i], M+lw, y);
+        }
+        y += 15;
+      });
+      y += 8;
+    });
+
+    footer();
+    return doc;
+  }
+
+  function flash(el, txt){
+    el.textContent = txt;
+    el.classList.add("show");
+    setTimeout(function(){ el.classList.remove("show"); }, 2800);
+  }
+
+  var sendMsg = document.getElementById("sendMsg");
+
+  document.getElementById("btnPdf").addEventListener("click", function(){
+    var doc = buildPDF();
+    if(!doc){
+      flash(sendMsg, "Nao foi possivel gerar o PDF. Use \u201cCopiar respostas\u201d abaixo.");
+      return;
+    }
+    doc.save(pdfNome());
+    try{ pdfBlob = doc.output("blob"); }catch(err){}
+    this.textContent = "PDF baixado — baixar de novo";
+    this.classList.add("done");
+  });
+
+  /* ---------- ENVIO ---------- */
+  document.getElementById("btnWhats").addEventListener("click", function(){
+    var msg = buildText();
+    var url = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(msg);
+    // URLs muito longas sao truncadas por alguns navegadores; nesse caso envia o resumo
+    if(url.length > 16000){
+      msg = "Ola! Segue minha anamnese pre-consulta.\n\nPaciente: " + pacienteNome() +
+            "\nPreenchido em " + new Date().toLocaleDateString("pt-BR") +
+            "\n\nAs respostas completas seguem no PDF em anexo.";
+      url = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(msg);
+      flash(sendMsg, "Respostas longas: envie tambem o PDF em anexo.");
+    }
+    window.open(url, "_blank");
+  });
+
+  document.getElementById("btnMail").addEventListener("click", function(){
+    var assunto = "Anamnese pre-consulta — " + pacienteNome();
+    var corpo = "Ola! Segue minha anamnese pre-consulta em anexo.\n\n" +
+                "Paciente: " + pacienteNome() + "\n" +
+                "Preenchido em " + new Date().toLocaleDateString("pt-BR") + "\n\n" +
+                "-- Nao esqueca de anexar o PDF baixado --\n";
+    window.location.href = "mailto:" + EMAIL_PARA +
+      "?cc=" + encodeURIComponent(EMAIL_COPIA) +
+      "&subject=" + encodeURIComponent(assunto) +
+      "&body=" + encodeURIComponent(corpo);
+  });
+
+  /* ---------- ENVIO AUTOMÁTICO (opcional) ---------- */
+  var btnAuto = document.getElementById("btnAutoInner");
+  if(FORMSPREE && btnAuto){
+    document.getElementById("stepAuto").style.display = "flex";
+    btnAuto.addEventListener("click", function(){
+      var self = this;
+      self.disabled = true;
+      self.textContent = "Enviando...";
+
+      function finish(ok){
+        self.disabled = false;
+        if(ok){
+          self.textContent = "Respostas enviadas";
+          self.classList.remove("primary");
+          self.classList.add("done");
+          flash(sendMsg, "Enviado para o consultorio.");
+        } else {
+          self.textContent = "Enviar respostas agora";
+          flash(sendMsg, "Falha no envio. Use o WhatsApp ou e-mail acima.");
+        }
+      }
+
+      var fd = new FormData();
+      fd.append("Paciente", pacienteNome());
+      fd.append("_subject", "Anamnese pre-consulta — " + pacienteNome());
+      fd.append("_cc", EMAIL_COPIA);
+      MAP.forEach(function(block){
+        block[1].forEach(function(f){
+          var v = getVal(f[0]);
+          if(v) fd.append(block[0] + " — " + f[1], v);
+        });
+      });
+
+      fetch(FORMSPREE, { method:"POST", body:fd, headers:{ Accept:"application/json" } })
+        .then(function(r){ finish(r.ok); })
+        .catch(function(){ finish(false); });
+    });
+  }
+
+  document.getElementById("btnCopy").addEventListener("click", function(){
+    var txt = buildText();
+    var done = document.getElementById("copied");
+    function flash(){
+      done.classList.add("show");
+      setTimeout(function(){ done.classList.remove("show"); }, 2000);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(flash, fallback);
+    } else fallback();
+    function fallback(){
+      var ta = document.createElement("textarea");
+      ta.value = txt;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try{ document.execCommand("copy"); flash(); }catch(err){}
+      document.body.removeChild(ta);
+    }
+  });
+
+  /* ---------- INÍCIO ---------- */
+  restore();
+  show(0);
+})();
+</script>
+</body>
+</html>
